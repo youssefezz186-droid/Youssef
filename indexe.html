@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="إبداع الطالب يوسف عز">
+    <title>الفصل 1/8 | أولى ثانوي - مدرسة الإحصاء الثانوية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary: #1a237e;
+            --primary-light: #534bae;
+            --primary-dark: #000051;
+            --secondary: #ff6f00;
+            --secondary-light: #ffa040;
+            --accent: #00c853;
+            --gold: #ffd700;
+            --white: #ffffff;
+            --dark: #263238;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #eeeeee;
+            --gray-300: #e0e0e0;
+            --gray-400: #bdbdbd;
+            --gray-500: #9e9e9e;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+            --radius-full: 9999px;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--gray-100); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 6px; }
+
+        .loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.5s; flex-direction: column;
+        }
+        .loader.hidden { opacity: 0; pointer-events: none; }
+        .loader-spinner {
+            width: 80px; height: 80px; border: 6px solid rgba(255,255,255,0.3);
+            border-top-color: var(--gold); border-radius: 50%;
+            animation: rotate 1s linear infinite; margin-bottom: 20px;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .loader-text { color: var(--white); font-size: 1.5rem; font-weight: 700; }
+
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white); padding: 1rem 0; box-shadow: var(--shadow-lg);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--gold);
+        }
+        .header-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
+        .logo-icon {
+            width: 60px; height: 60px; background: var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--primary-dark); animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .logo-text h1 { font-size: 1.8rem; font-weight: 800; }
+        .logo-text p { font-size: 0.9rem; opacity: 0.9; }
+        .header-info { text-align: left; background: rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 1rem; }
+        .header-info p { margin: 0.3rem 0; font-size: 0.95rem; }
+        .header-info strong { color: var(--gold); }
+
+        .class-leaders-section {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--primary-dark); padding: 2rem; border-radius: var(--radius-3xl);
+            margin: 2rem auto; max-width: 1400px; box-shadow: var(--shadow-xl);
+            border: 3px solid var(--primary); position: relative; overflow: hidden;
+        }
+        .class-leaders-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .class-leaders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .leader-card {
+            background: var(--white); border-radius: var(--radius-2xl); padding: 1.5rem;
+            text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s; border: 3px solid var(--primary);
+        }
+        .leader-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .leader-icon {
+            width: 80px; height: 80px; border-radius: 50%; background: var(--primary);
+            color: var(--white); display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; margin: 0 auto 1rem; border: 3px solid var(--gold);
+        }
+        .leader-name { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .leader-role { font-size: 1.1rem; color: var(--secondary); font-weight: 700; }
+        .leader-badge { background: var(--gold); padding: 0.3rem 1rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+
+        .search-container { position: relative; width: 100%; max-width: 500px; margin: 1rem auto 0; }
+        .search-input-wrapper { position: relative; }
+        .search-input {
+            width: 100%; padding: 0.9rem 3rem 0.9rem 1rem;
+            border: 2px solid rgba(255,255,255,0.3); border-radius: 50px;
+            background: rgba(255,255,255,0.15); color: var(--white);
+            font-size: 1rem; font-family: inherit; outline: none; transition: all 0.3s;
+        }
+        .search-input:focus { background: rgba(255,255,255,0.25); border-color: var(--gold); }
+        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); }
+        .search-results {
+            position: absolute; top: 110%; right: 0; left: 0;
+            background: var(--white); border-radius: 1rem; box-shadow: var(--shadow-xl);
+            max-height: 300px; overflow-y: auto; display: none; z-index: 1001;
+        }
+        .search-results.active { display: block; }
+        .search-result-item { padding: 1rem; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; cursor: pointer; }
+        .search-result-item:hover { background: var(--gray-100); }
+        .result-type { background: var(--gold); color: var(--primary-dark); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; }
+
+        .main-nav {
+            background: rgba(255,255,255,0.95); padding: 1rem 0; box-shadow: var(--shadow-md);
+            position: sticky; top: 100px; z-index: 999;
+        }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+        .nav-menu li a {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem;
+            background: var(--primary); color: var(--white); text-decoration: none;
+            border-radius: 50px; font-weight: 600; transition: all 0.3s; cursor: pointer;
+        }
+        .nav-menu li a:hover, .nav-menu li a.active { transform: translateY(-3px); background: var(--secondary); }
+        .nav-menu li a.nav-boys { background: linear-gradient(135deg, #2196f3, #1565c0); }
+        .nav-menu li a.nav-boys:hover, .nav-menu li a.nav-boys.active { background: linear-gradient(135deg, #42a5f5, #1976d2); }
+        .nav-menu li a.nav-girls { background: linear-gradient(135deg, #e91e63, #c2185b); }
+        .nav-menu li a.nav-girls:hover, .nav-menu li a.nav-girls.active { background: linear-gradient(135deg, #ec407a, #d81b60); }
+
+        .page-section { display: none; animation: fadeIn 0.5s ease; }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .main-container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .section {
+            background: var(--white); border-radius: var(--radius-3xl); padding: 2rem;
+            margin-bottom: 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--gray-200);
+        }
+        .section-title {
+            font-size: 2rem; font-weight: 800; color: var(--primary);
+            margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 4px solid var(--gold);
+            display: flex; align-items: center; gap: 1rem;
+        }
+
+        .wisdom-section {
+            background: var(--primary); color: var(--white); text-align: center; padding: 3rem 2rem;
+            border-radius: var(--radius-3xl); margin-bottom: 2rem; box-shadow: var(--shadow-xl);
+            border: 3px solid var(--gold);
+        }
+        .wisdom-icon { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .wisdom-text { font-size: 1.5rem; font-family: 'Amiri', serif; line-height: 2; margin-bottom: 1rem; }
+        .wisdom-source { color: var(--gold); font-style: italic; }
+
+        .prayer-times-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .prayer-card {
+            background: var(--primary); color: var(--white); padding: 1.5rem;
+            border-radius: 1rem; text-align: center; transition: all 0.3s;
+        }
+        .prayer-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .prayer-time { font-size: 1.5rem; font-weight: 800; color: var(--gold); }
+
+        /* ===== NEW TASBIH DESIGN ===== */
+        .tasbih-wrapper {
+            background: linear-gradient(135deg, #0d1442 0%, #1a237e 50%, #283593 100%);
+            border-radius: var(--radius-3xl);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            color: var(--white);
+            box-shadow: var(--shadow-xl);
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        .tasbih-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .tasbih-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,200,83,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .tasbih-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
+        }
+        .tasbih-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .tasbih-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        .tasbih-main {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tasbih-display {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin-bottom: 2rem;
+        }
+        .tasbih-outer-ring {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 6px solid var(--gold);
+            border-radius: 50%;
+            animation: rotateSlow 8s linear infinite;
+        }
+        .tasbih-outer-ring::before {
+            content: '●';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .tasbih-inner-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle at 30% 30%, rgba(83,75,174,0.8), rgba(0,0,81,0.9));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: inset 0 0 40px rgba(255,215,0,0.1), 0 0 30px rgba(0,0,0,0.3);
+        }
+        .tasbih-inner-circle:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: inset 0 0 60px rgba(255,215,0,0.2), 0 0 50px rgba(255,215,0,0.3);
+        }
+        .tasbih-inner-circle:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+        .tasbih-count {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+            line-height: 1;
+        }
+        .tasbih-count-label {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        .tasbih-progress-ring {
+            position: absolute;
+            top: 15px; left: 15px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+        .tasbih-progress-ring circle {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+        }
+        .tasbih-progress-ring .progress-bg {
+            stroke: rgba(255,255,255,0.1);
+        }
+        .tasbih-progress-ring .progress-fill {
+            stroke: var(--gold);
+            transition: stroke-dashoffset 0.3s;
+        }
+        .tasbih-dhikr-select {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+        }
+        .tasbih-dhikr-select label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .tasbih-dhikr-select select {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            outline: none;
+            transition: all 0.3s;
+        }
+        .tasbih-dhikr-select select option {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+        .tasbih-dhikr-select select:focus {
+            box-shadow: 0 0 15px rgba(255,215,0,0.4);
+        }
+        .tasbih-target-display {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,215,0,0.15);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .tasbih-buttons {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tasbih-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+        .tasbih-btn-reset {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .tasbih-btn-reset:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .tasbih-total {
+            position: relative;
+            z-index: 1;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        .tasbih-total span {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .quick-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .quick-link-card {
+            background: var(--primary); color: var(--white); padding: 2rem; border-radius: 1rem;
+            text-align: center; cursor: pointer; transition: all 0.3s;
+        }
+        .quick-link-card:hover { transform: translateY(-5px); background: var(--secondary); }
+        .quick-link-card i { font-size: 3rem; margin-bottom: 1rem; }
+        
+        .students-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .students-category { background: var(--gray-100); border-radius: 1.5rem; padding: 2rem; border: 3px solid var(--primary); }
+        .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 3px solid var(--gold); }
+        .category-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .boys .category-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .girls .category-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .category-title { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .category-count { background: var(--gold); color: var(--primary-dark); padding: 0.3rem 1rem; border-radius: 50px; font-weight: 700; margin-right: auto; }
+        .students-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; list-style: none; }
+        .student-item {
+            background: var(--white); padding: 0.8rem 1rem; border-radius: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem; box-shadow: var(--shadow-sm); transition: all 0.3s;
+        }
+        .student-item:hover { transform: translateX(-5px); background: var(--primary); color: var(--white); }
+        .student-number { background: var(--gold); color: var(--primary-dark); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+
+        .table-wrapper { overflow-x: auto; border-radius: 1rem; box-shadow: var(--shadow-md); }
+        .schedule-table { width: 100%; border-collapse: collapse; background: var(--white); min-width: 900px; }
+        .schedule-table thead { background: var(--primary); color: var(--white); }
+        .schedule-table th, .schedule-table td { padding: 0.8rem 0.5rem; text-align: center; border: 1px solid var(--gray-300); font-size: 0.95rem; }
+        .schedule-table th { font-weight: 700; font-size: 1rem; }
+        .schedule-table tbody tr:hover { background: var(--gray-100); }
+        .schedule-table tbody tr:nth-child(even) { background: var(--gray-50); }
+        .day-cell { font-weight: 800; color: var(--white); font-size: 1.2rem; background: var(--primary); white-space: nowrap; }
+        .subject-cell { font-weight: 600; padding: 0.6rem 0.4rem; border-radius: 0.5rem; color: var(--white); min-width: 100px; }
+        .subject-cell:not(.empty-cell) { background: var(--primary-light); }
+        .empty-cell { background: var(--gray-200); color: var(--gray-500); font-weight: 400; }
+        .teacher-name { font-size: 0.75rem; opacity: 0.9; margin-top: 0.2rem; display: block; }
+        .subject-arabic { background: #4caf50 !important; }
+        .subject-english { background: #2196f3 !important; }
+        .subject-french { background: #9c27b0 !important; }
+        .subject-math { background: #ff5722 !important; }
+        .subject-history { background: #795548 !important; }
+        .subject-philosophy { background: #607d8b !important; }
+        .subject-science { background: #00bcd4 !important; }
+        .subject-programming { background: #4caf50 !important; }
+        .subject-games { background: #ff9800 !important; }
+        .subject-religion { background: #3f51b5 !important; }
+        .subject-activity { background: #e91e63 !important; }
+
+        .quran-container { display: grid; grid-template-columns: 300px 1fr; gap: 2rem; }
+        .quran-sidebar { background: var(--primary); color: var(--white); border-radius: 1rem; padding: 1.5rem; max-height: 700px; overflow-y: auto; }
+        .quran-sidebar h3 { text-align: center; padding-bottom: 1rem; border-bottom: 2px solid var(--gold); margin-bottom: 1rem; }
+        .surah-list { list-style: none; }
+        .surah-item { padding: 0.8rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 0.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .surah-item:hover { background: rgba(255,255,255,0.2); }
+        .surah-item.active { background: var(--gold); color: var(--primary-dark); }
+        .surah-number { background: rgba(255,255,255,0.3); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .quran-reader { background: var(--gray-50); border-radius: 1rem; padding: 2rem; border: 3px solid var(--gold); }
+        .quran-header { text-align: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--primary); }
+        .quran-header h2 { font-family: 'Amiri', serif; color: var(--primary); }
+        .quran-content { font-family: 'Amiri', serif; font-size: 1.8rem; line-height: 2.5; text-align: center; }
+        .quran-controls { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .quran-btn { padding: 0.8rem 1.5rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        .quran-btn-primary { background: var(--primary); color: var(--white); }
+
+        .challenge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .challenge-card {
+            background: var(--white); border-radius: 1.5rem; padding: 2rem;
+            border: 3px solid var(--primary); box-shadow: var(--shadow-md);
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        .challenge-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .challenge-text { font-size: 1.4rem; font-weight: 600; margin-bottom: 2rem; line-height: 1.8; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; width: 100%; margin-bottom: 1rem; }
+        .option-btn {
+            padding: 1rem; border: 2px solid var(--gray-300); border-radius: 1rem;
+            background: var(--white); font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; font-family: inherit;
+        }
+        .option-btn:hover { background: var(--gray-100); border-color: var(--primary); }
+        .option-btn.correct { background: var(--accent); color: var(--white); border-color: var(--accent); }
+        .option-btn.wrong { background: #f44336; color: var(--white); border-color: #f44336; }
+        .riddle-input-wrapper { width: 100%; display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .riddle-input {
+            flex: 1; padding: 1rem; border: 2px solid var(--gray-300); border-radius: 1rem;
+            font-size: 1.1rem; font-family: inherit; outline: none;
+        }
+        .riddle-input:focus { border-color: var(--warning); }
+        .submit-btn {
+            padding: 1rem 2rem; border: none; border-radius: 1rem; background: var(--warning);
+            color: var(--white); font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; font-family: inherit;
+        }
+        .submit-btn:hover { background: var(--warning-dark); transform: translateY(-2px); }
+        .feedback-msg { margin-top: 1rem; font-size: 1.2rem; font-weight: 700; min-height: 2rem; }
+        .feedback-correct { color: var(--accent); }
+        .feedback-wrong { color: #f44336; }
+
+        .islamic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .islamic-card { background: var(--white); border-radius: 1rem; padding: 2rem; border: 3px solid var(--primary); transition: all 0.3s; }
+        .islamic-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); border-color: var(--gold); }
+        .islamic-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--gold); }
+        .islamic-icon { width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: var(--white); display: flex; align-items: center; justify-content: center; }
+        .islamic-content { font-family: 'Amiri', serif; font-size: 1.3rem; line-height: 2; text-align: center; }
+        .hadith-text { background: var(--gray-100); padding: 1.5rem; border-radius: 0.5rem; border-right: 4px solid var(--gold); }
+        .hadith-source { margin-top: 1rem; font-size: 0.95rem; color: var(--primary); font-weight: 600; }
+
+        .main-footer { background: var(--primary); color: var(--white); padding: 2rem 0 1rem; margin-top: 3rem; border-top: 3px solid var(--gold); }
+        .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 2px solid rgba(255,255,255,0.2); }
+        .footer-credit { font-size: 1.1rem; color: var(--gold); font-weight: 700; }
+
+        .chat-toggle {
+            position: fixed; bottom: 30px; left: 30px; width: 70px; height: 70px;
+            border-radius: 50%; background: var(--secondary); color: var(--white);
+            border: none; font-size: 2rem; cursor: pointer; box-shadow: var(--shadow-xl);
+            z-index: 1500; display: flex; align-items: center; justify-content: center;
+        }
+        .chat-window {
+            position: fixed; bottom: 110px; left: 30px; width: 400px; height: 550px;
+            background: var(--white); border-radius: 1.5rem; box-shadow: var(--shadow-2xl);
+            z-index: 1500; display: none; flex-direction: column; overflow: hidden; border: 3px solid var(--primary);
+        }
+        .chat-window.active { display: flex; animation: fadeIn 0.3s; }
+        .chat-header { background: var(--primary); color: var(--white); padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8rem; }
+        .chat-message { max-width: 80%; padding: 0.8rem 1.2rem; border-radius: 1rem; font-size: 0.95rem; }
+        .chat-message.bot { background: var(--white); border: 1px solid var(--gray-300); align-self: flex-start; }
+        .chat-message.user { background: var(--primary); color: var(--white); align-self: flex-end; }
+        .chat-input-area { padding: 1rem; display: flex; gap: 0.5rem; border-top: 1px solid var(--gray-200); }
+        .chat-input { flex: 1; padding: 0.8rem; border: 2px solid var(--gray-200); border-radius: 50px; font-family: inherit; outline: none; }
+        .chat-send { width: 45px; height: 45px; border-radius: 50%; background: var(--primary); color: var(--white); border: none; cursor: pointer; }
+        .chat-close { background: rgba(255,255,255,0.2); border: none; color: var(--white); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+
+        .celebration-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 9999; display: none;
+            justify-content: center; align-items: center; backdrop-filter: blur(10px);
+        }
+        .celebration-overlay.active { display: flex; }
+        .celebration-content { text-align: center; color: var(--white); z-index: 10000; padding: 2rem; background: var(--primary); border-radius: 1.5rem; border: 5px solid var(--gold); }
+        .celebration-title { font-size: 3rem; color: var(--gold); animation: pulse 1s infinite; }
+        .celebration-btn { padding: 1rem 2rem; background: var(--gold); color: var(--primary-dark); border: none; border-radius: 50px; font-size: 1.2rem; cursor: pointer; }
+        #confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; }
+
+        .chat-page-container { display: grid; gap: 0; }
+        .chat-room {
+            background: var(--white);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .chat-room-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        .chat-room-header.boys-room {
+            background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+        }
+        .chat-room-header.girls-room {
+            background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+        }
+        .chat-room-messages {
+            height: 450px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--gray-50);
+        }
+        .chat-room-input-area {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            border-top: 1px solid var(--gray-200);
+            background: var(--white);
+        }
+        .chat-room-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .chat-room-input:focus { border-color: var(--primary); }
+        .chat-room-send {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .chat-room-send:hover { transform: scale(1.1); }
+        .room-message {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            max-width: 85%;
+            animation: fadeIn 0.3s;
+        }
+        .room-message.sent {
+            background: var(--primary);
+            color: var(--white);
+            margin-right: auto;
+            border-bottom-right-radius: 0.3rem;
+        }
+        .room-message.received {
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            margin-left: auto;
+            border-bottom-left-radius: 0.3rem;
+        }
+        .room-message .msg-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+        .room-message.sent .msg-name { color: rgba(255,255,255,0.8); }
+        .room-message .msg-text { font-size: 0.95rem; line-height: 1.5; }
+        .room-message .msg-time { font-size: 0.7rem; opacity: 0.7; margin-top: 0.3rem; }
+        .chat-username-selector {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        .chat-username-selector select {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            cursor: pointer;
+            background: var(--white);
+        }
+
+        .quiz-container { max-width: 800px; margin: 0 auto; }
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white); padding: 2rem; border-radius: 1.5rem 1.5rem 0 0; text-align: center;
+        }
+        .quiz-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .quiz-progress { background: rgba(255,255,255,0.3); height: 10px; border-radius: 50px; margin-top: 1rem; overflow: hidden; }
+        .quiz-progress-bar { height: 100%; background: var(--gold); border-radius: 50px; transition: width 0.5s ease; }
+        .quiz-body { background: var(--white); padding: 2rem; border-radius: 0 0 1.5rem 1.5rem; box-shadow: var(--shadow-lg); }
+        .quiz-question { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: var(--primary); line-height: 1.8; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .quiz-option {
+            padding: 1.2rem; border: 3px solid var(--gray-300); border-radius: 1rem;
+            background: var(--white); font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; font-family: inherit; text-align: center;
+        }
+        .quiz-option:hover { border-color: var(--primary); background: var(--gray-50); transform: scale(1.02); }
+        .quiz-option.correct { border-color: var(--accent); background: var(--accent); color: var(--white); }
+        .quiz-option.wrong { border-color: #f44336; background: #f44336; color: var(--white); }
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--gray-200); }
+        .quiz-score { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .quiz-btn { padding: 0.8rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+        .quiz-btn-next { background: var(--primary); color: var(--white); }
+        .quiz-btn-restart { background: var(--secondary); color: var(--white); }
+        .quiz-result { text-align: center; padding: 2rem; }
+        .quiz-result-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .quiz-result-score { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem; }
+        .quiz-result-msg { font-size: 1.3rem; margin-bottom: 2rem; }
+
+        @media (max-width: 968px) {
+            .quran-container { grid-template-columns: 1fr; }
+            .students-grid { grid-template-columns: 1fr; }
+            .header-container { flex-direction: column; text-align: center; }
+            .header-info { text-align: center; }
+            .chat-window { width: 90%; left: 5%; bottom: 100px; height: 450px; }
+            .challenge-grid { grid-template-columns: 1fr; }
+            .quiz-options { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .main-container { padding: 1rem; }
+            .section { padding: 1.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .tasbih-display { width: 220px; height: 220px; }
+            .tasbih-inner-circle { width: 180px; height: 180px; }
+            .tasbih-count { font-size: 3.5rem; }
+            .prayer-times-container { grid-template-columns: repeat(2, 1fr); }
+            .options-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">جاري تحميل الموقع...</div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo" onclick="showPage('home')">
+                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h1>الفصل 1/8 - أولى ثانوي</h1>
+                    <p>مدرسة الإحصاء الثانوية المشتركة</p>
+                </div>
+            </div>
+            <div class="header-info">
+                <p><i class="fas fa-user-tie"></i> <strong>إدارة:</strong> أ/ فكري هاشم الزيدي</p>
+                <p><i class="fas fa-calendar"></i> <strong>العام:</strong> 2025-2026</p>
+                <p><i class="fas fa-users"></i> <strong>الطلاب:</strong> 45 طالب</p>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="studentSearch" class="search-input" placeholder="🔍 ابحث عن اسمك هنا..." oninput="searchStudent(this.value)">
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </header>
+
+    <!-- CLASS LEADERS -->
+    <section class="class-leaders-section">
+        <h2 class="class-leaders-title">👑 رواد الفصل 1/8 👑</h2>
+        <div class="class-leaders-grid">
+            <div class="leader-card">
+                <div class="leader-icon"><i class="fas fa-user-graduate"></i></div>
+                <div class="leader-name">يوسف عز</div>
+                <div class="leader-role">الرائد</div>
+                <span class="leader-badge">🌟 رائد الفصل</span>
+            </div>
+            <div class="leader-card">
+                <div class="leader-icon"><i class="fas fa-user-graduate"></i></div>
+                <div class="leader-name">هنا مصطفي</div>
+                <div class="leader-role">الرائدة</div>
+                <span class="leader-badge">🌟 رائدة الفصل</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVIGATION - SEPARATE CHAT BUTTONS -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a onclick="showPage('home')" class="nav-link active" data-page="home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a onclick="showPage('students')" class="nav-link" data-page="students"><i class="fas fa-users"></i> الطلاب</a></li>
+                <li><a onclick="showPage('schedule')" class="nav-link" data-page="schedule"><i class="fas fa-calendar-alt"></i> الجدول</a></li>
+                <li><a onclick="showPage('chat-boys')" class="nav-link nav-boys" data-page="chat-boys"><i class="fas fa-male"></i> شات البنين</a></li>
+                <li><a onclick="showPage('chat-girls')" class="nav-link nav-girls" data-page="chat-girls"><i class="fas fa-female"></i> شات البنات</a></li>
+                <li><a onclick="showPage('challenge')" class="nav-link" data-page="challenge"><i class="fas fa-brain"></i> تحدي اليوم</a></li>
+                <li><a onclick="showPage('quran')" class="nav-link" data-page="quran"><i class="fas fa-quran"></i> المصحف</a></li>
+                <li><a onclick="showPage('games')" class="nav-link" data-page="games"><i class="fas fa-gamepad"></i> الألعاب</a></li>
+                <li><a onclick="showPage('islamic')" class="nav-link" data-page="islamic"><i class="fas fa-book-quran"></i> إسلامي</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE: HOME -->
+    <div id="page-home" class="page-section active">
+        <div class="main-container">
+            <section class="wisdom-section">
+                <div class="wisdom-icon"><i class="fas fa-quote-right"></i></div>
+                <div class="wisdom-text" id="wisdomText">جاري تحميل حكمة اليوم...</div>
+                <div class="wisdom-source" id="wisdomSource"></div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-mosque"></i> مواقيت الصلاة</h2>
+                <div class="prayer-times-container" id="prayerTimes">
+                    <div class="prayer-card"><div class="prayer-name">الفجر</div><div class="prayer-time" id="fajrTime">--:--</div></div>
+                    <div class="prayer-card"><div class="prayer-name">الشروق</div><div class="prayer-time" id="sunriseTime">--:--</div></div>
+                    <div class="prayer-card"><div class="prayer-name">الظهر</div><div class="prayer-time" id="dhuhrTime">--:--</div></div>
+                    <div class="prayer-card"><div class="prayer-name">العصر</div><div class="prayer-time" id="asrTime">--:--</div></div>
+                    <div class="prayer-card"><div class="prayer-name">المغرب</div><div class="prayer-time" id="maghribTime">--:--</div></div>
+                    <div class="prayer-card"><div class="prayer-name">العشاء</div><div class="prayer-time" id="ishaTime">--:--</div></div>
+                </div>
+            </section>
+
+            <!-- NEW TASBIH SECTION -->
+            <section class="tasbih-wrapper">
+                <div class="tasbih-header">
+                    <h2><i class="fas fa-fingerprint"></i> السبحة الإلكترونية</h2>
+                    <p>سبّح الله واحمد الله وكبّره</p>
+                </div>
+                <div class="tasbih-main">
+                    <div class="tasbih-dhikr-select">
+                        <label for="tasbihType">اختر الذكر:</label>
+                        <select id="tasbihType" onchange="changeTasbihType()">
+                            <option value="subhanallah">سبحان الله</option>
+                            <option value="alhamdulillah">الحمد لله</option>
+                            <option value="allahuakbar">الله أكبر</option>
+                            <option value="lailaha">لا إله إلا الله</option>
+                            <option value="astaghfirullah">أستغفر الله</option>
+                            <option value="salawat">الصلاة على النبي ﷺ</option>
+                        </select>
+                    </div>
+                    <div class="tasbih-target-display" id="tasbihTargetDisplay">الهدف: 33 مرة</div>
+                    <div class="tasbih-display">
+                        <svg class="tasbih-progress-ring" viewBox="0 0 250 250">
+                            <circle class="progress-bg" cx="125" cy="125" r="110" />
+                            <circle class="progress-fill" id="tasbihProgressFill" cx="125" cy="125" r="110" 
+                                stroke-dasharray="691" stroke-dashoffset="691" />
+                        </svg>
+                        <div class="tasbih-outer-ring"></div>
+                        <div class="tasbih-inner-circle" onclick="incrementTasbih()">
+                            <div class="tasbih-count" id="tasbihCount">0</div>
+                            <div class="tasbih-count-label">اضغط للعد</div>
+                        </div>
+                    </div>
+                    <div class="tasbih-buttons">
+                        <button class="tasbih-btn tasbih-btn-reset" onclick="resetTasbih()">
+                            <i class="fas fa-redo"></i> تصفير
+                        </button>
+                    </div>
+                    <div class="tasbih-total">الإجمالي: <span id="tasbihTotal">0</span> تسبيحة</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-link"></i> روابط سريعة</h2>
+                <div class="quick-links-grid">
+                    <div class="quick-link-card" onclick="showPage('students')">
+                        <i class="fas fa-users"></i>
+                        <h3>كشف الطلاب</h3>
+                        <p>عرض قائمة الطلاب</p>
+                    </div>
+                    <div class="quick-link-card" onclick="showPage('schedule')">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>جدول الحصص</h3>
+                        <p>جدول الأسبوع</p>
+                    </div>
+                    <div class="quick-link-card" onclick="showPage('quran')">
+                        <i class="fas fa-quran"></i>
+                        <h3>المصحف الشريف</h3>
+                        <p>قراءة وتحميل</p>
+                    </div>
+                    <div class="quick-link-card" onclick="showPage('challenge')">
+                        <i class="fas fa-brain"></i>
+                        <h3>تحدي اليوم</h3>
+                        <p>سؤال ولغز يومي</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: STUDENTS -->
+    <div id="page-students" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-users"></i> كشف الطلاب والطالبات</h2>
+                <div class="students-grid">
+                    <div class="students-category boys">
+                        <div class="category-header">
+                            <div class="category-icon"><i class="fas fa-male"></i></div>
+                            <h3 class="category-title">البنين</h3>
+                            <span class="category-count" id="boysCount">13 طالب</span>
+                        </div>
+                        <ul class="students-list" id="boysList"></ul>
+                    </div>
+                    <div class="students-category girls">
+                        <div class="category-header">
+                            <div class="category-icon"><i class="fas fa-female"></i></div>
+                            <h3 class="category-title">البنات</h3>
+                            <span class="category-count" id="girlsCount">30 طالبة</span>
+                        </div>
+                        <ul class="students-list" id="girlsList"></ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: SCHEDULE -->
+    <div id="page-schedule" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> جدول الحصص - الفصل 1/8</h2>
+                <div class="table-wrapper">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr><th>اليوم</th><th>الحصة 1</th><th>الحصة 2</th><th>الحصة 3</th><th>الحصة 4</th><th>الحصة 5</th><th>الحصة 6</th><th>الحصة 7</th><th>الحصة 8</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="day-cell">الأحد</td>
+                                <td class="subject-cell subject-philosophy">فلسفة<br><span class="teacher-name">أ/ يسري بكر</span></td>
+                                <td class="subject-cell subject-philosophy">فلسفة<br><span class="teacher-name">أ/ يسري بكر</span></td>
+                                <td class="subject-cell subject-history">تاريخ<br><span class="teacher-name">أ/ منال</span></td>
+                                <td class="subject-cell subject-history">تاريخ<br><span class="teacher-name">أ/ منال</span></td>
+                                <td class="subject-cell subject-math">رياضة<br><span class="teacher-name">أ/ محمد وحيد</span></td>
+                                <td class="subject-cell subject-math">رياضة<br><span class="teacher-name">أ/ محمد وحيد</span></td>
+                                <td class="subject-cell subject-french">فرنسي<br><span class="teacher-name">نزيه</span></td>
+                                <td class="subject-cell subject-french">فرنسي<br><span class="teacher-name">نزيه</span></td>
+                            </tr>
+                            <tr>
+                                <td class="day-cell">الإثنين</td>
+                                <td class="subject-cell subject-activity">نشاط تربوي<br><span class="teacher-name">أ/ شيماء</span></td>
+                                <td class="subject-cell subject-science">علوم متكاملة<br><span class="teacher-name">أ/ طارق مشهور</span></td>
+                                <td class="subject-cell subject-science">علوم متكاملة<br><span class="teacher-name">أ/ طارق مشهور</span></td>
+                                <td class="subject-cell subject-english">إنجليزي<br><span class="teacher-name">أ/ أمل</span></td>
+                                <td class="subject-cell subject-english">إنجليزي<br><span class="teacher-name">أ/ أمل</span></td>
+                                <td class="subject-cell subject-arabic">عربي<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-arabic">عربي<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell empty-cell">-</td>
+                            </tr>
+                            <tr>
+                                <td class="day-cell">الثلاثاء</td>
+                                <td class="subject-cell subject-programming">البرمجة<br><span class="teacher-name">أ/ مصطفى جاب</span></td>
+                                <td class="subject-cell subject-programming">البرمجة<br><span class="teacher-name">أ/ مصطفى جاب</span></td>
+                                <td class="subject-cell subject-games">ألعاب<br><span class="teacher-name">أ/ حسين</span></td>
+                                <td class="subject-cell subject-history">تاريخ<br><span class="teacher-name">أ/ منال</span></td>
+                                <td class="subject-cell subject-history">تاريخ<br><span class="teacher-name">أ/ منال</span></td>
+                                <td class="subject-cell subject-philosophy">فلسفة<br><span class="teacher-name">أ/ يسري بكر</span></td>
+                                <td class="subject-cell subject-philosophy">فلسفة<br><span class="teacher-name">أ/ يسري بكر</span></td>
+                                <td class="subject-cell empty-cell">-</td>
+                            </tr>
+                            <tr>
+                                <td class="day-cell">الأربعاء</td>
+                                <td class="subject-cell subject-arabic">عربي<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-arabic">عربي<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-math">رياضة<br><span class="teacher-name">أ/ محمد وحيد</span></td>
+                                <td class="subject-cell subject-math">رياضة<br><span class="teacher-name">أ/ محمد وحيد</span></td>
+                                <td class="subject-cell subject-religion">دين<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-religion">دين<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-science">علوم متكاملة<br><span class="teacher-name">أ/ طارق مشهور</span></td>
+                                <td class="subject-cell empty-cell">-</td>
+                            </tr>
+                            <tr>
+                                <td class="day-cell">الخميس</td>
+                                <td class="subject-cell subject-english">إنجليزي<br><span class="teacher-name">أ/ أمل</span></td>
+                                <td class="subject-cell subject-english">إنجليزي<br><span class="teacher-name">أ/ أمل</span></td>
+                                <td class="subject-cell subject-programming">البرمجة<br><span class="teacher-name">أ/ مصطفى جاب</span></td>
+                                <td class="subject-cell subject-programming">البرمجة<br><span class="teacher-name">أ/ مصطفى جاب</span></td>
+                                <td class="subject-cell subject-arabic">عربي<br><span class="teacher-name">أ/ عزيزة</span></td>
+                                <td class="subject-cell subject-science">علوم متكاملة<br><span class="teacher-name">أ/ طارق مشهور</span></td>
+                                <td class="subject-cell subject-science">علوم متكاملة<br><span class="teacher-name">أ/ طارق مشهور</span></td>
+                                <td class="subject-cell empty-cell">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: CHAT BOYS (SEPARATE) -->
+    <div id="page-chat-boys" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title" style="color: #2196f3; border-bottom-color: #2196f3;"><i class="fas fa-male"></i> شات البنين</h2>
+                <div class="chat-username-selector">
+                    <h3 style="margin-bottom:1rem;color:var(--primary);">👤 اختر اسمك قبل الدردشة:</h3>
+                    <select id="chatUsernameSelectBoys" onchange="updateChatUser('boys')">
+                        <option value="">-- اختر اسمك --</option>
+                        <option value="مؤمن">مؤمن محمد</option>
+                        <option value="نبيل">نبيل محمد</option>
+                        <option value="هادي">هادي ناجح</option>
+                        <option value="ياسين أحمد">ياسين أحمد</option>
+                        <option value="ياسين أيمن">ياسين أيمن</option>
+                        <option value="يوسف أحمد">يوسف أحمد</option>
+                        <option value="يوسف رمضان">يوسف رمضان</option>
+                        <option value="يوسف سيد سمير">يوسف سيد سمير</option>
+                        <option value="يوسف سيد قدرى">يوسف سيد قدرى</option>
+                        <option value="يوسف عاطف">يوسف عاطف</option>
+                        <option value="يوسف عز">يوسف عز الدين</option>
+                        <option value="يوسف محمد">يوسف محمد</option>
+                        <option value="يوسف محمود">يوسف محمود</option>
+                    </select>
+                </div>
+                <div class="chat-page-container">
+                    <div class="chat-room">
+                        <div class="chat-room-header boys-room"><i class="fas fa-male"></i> شات البنين 💙</div>
+                        <div class="chat-room-messages" id="boysChatMessages">
+                            <div class="room-message received">
+                                <div class="msg-name">النظام</div>
+                                <div class="msg-text">مرحباً بالبنين في شات الفصل 1/8! 💙</div>
+                            </div>
+                        </div>
+                        <div class="chat-room-input-area">
+                            <input type="text" id="boysChatInput" class="chat-room-input" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter')sendBoysMessage()">
+                            <button class="chat-room-send" onclick="sendBoysMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: CHAT GIRLS (SEPARATE) -->
+    <div id="page-chat-girls" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title" style="color: #e91e63; border-bottom-color: #e91e63;"><i class="fas fa-female"></i> شات البنات</h2>
+                <div class="chat-username-selector">
+                    <h3 style="margin-bottom:1rem;color:var(--primary);">👤 اختر اسمك قبل الدردشة:</h3>
+                    <select id="chatUsernameSelectGirls" onchange="updateChatUser('girls')">
+                        <option value="">-- اختر اسمك --</option>
+                        <option value="نرمين">نرمين عبد الغفار</option>
+                        <option value="نهلة">نهلة محمود</option>
+                        <option value="نور تويه">نور تويه</option>
+                        <option value="نور خالد">نور خالد</option>
+                        <option value="نورا سعيد">نورا سعيد</option>
+                        <option value="نورا مسعود">نورا مسعود</option>
+                        <option value="نوران أسامة">نوران أسامة</option>
+                        <option value="نوران صادق">نوران صادق</option>
+                        <option value="نورهان زينهم">نورهان زينهم</option>
+                        <option value="نورهان محمد">نورهان محمد</option>
+                        <option value="نورهان محمود">نورهان محمود</option>
+                        <option value="نورهان هاني">نورهان هاني</option>
+                        <option value="نيجار">نيجار محمد</option>
+                        <option value="هاجر رجب">هاجر رجب</option>
+                        <option value="هاجر عامر">هاجر عامر</option>
+                        <option value="هاجر ممدوح">هاجر ممدوح</option>
+                        <option value="هائم">هائم حسام</option>
+                        <option value="هدى">هدى سمير</option>
+                        <option value="هدير">هدير سمير</option>
+                        <option value="هنا سامي">هنا سامي</option>
+                        <option value="هنا عمرى">هنا عمرى</option>
+                        <option value="هنا مصطفى">هنا مصطفى</option>
+                        <option value="هند">هند شوقي</option>
+                        <option value="وفاء">وفاء إبراهيم</option>
+                        <option value="ولاء">ولاء سعيد</option>
+                        <option value="يارا">يارا عادل</option>
+                        <option value="ياسمين رضى">ياسمين رضى</option>
+                        <option value="ياسمين صبرى">ياسمين صبرى</option>
+                        <option value="يوانا">يوانا عزيز</option>
+                        <option value="يوستينا">يوستينا أيمن</option>
+                        <option value="هادية">هادية محمد</option>
+                        <option value="هنا سويلم">هنا سويلم</option>
+                    </select>
+                </div>
+                <div class="chat-page-container">
+                    <div class="chat-room">
+                        <div class="chat-room-header girls-room"><i class="fas fa-female"></i> شات البنات 💗</div>
+                        <div class="chat-room-messages" id="girlsChatMessages">
+                            <div class="room-message received">
+                                <div class="msg-name">النظام</div>
+                                <div class="msg-text">مرحباً بالبنات في شات الفصل 1/8! 💗</div>
+                            </div>
+                        </div>
+                        <div class="chat-room-input-area">
+                            <input type="text" id="girlsChatInput" class="chat-room-input" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter')sendGirlsMessage()">
+                            <button class="chat-room-send" onclick="sendGirlsMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: CHALLENGE -->
+    <div id="page-challenge" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-brain"></i> تحدي اليوم</h2>
+                <div class="challenge-grid">
+                    <div class="challenge-card question-card">
+                        <h3 class="challenge-title">❓ سؤال اليوم</h3>
+                        <div id="question-text" class="challenge-text">جاري تحميل السؤال...</div>
+                        <div id="question-options" class="options-grid"></div>
+                        <div id="question-feedback" class="feedback-msg"></div>
+                    </div>
+                    <div class="challenge-card riddle-card">
+                        <h3 class="challenge-title">🧩 لغز اليوم</h3>
+                        <div id="riddle-text" class="challenge-text">جاري تحميل اللغز...</div>
+                        <div class="riddle-input-wrapper">
+                            <input type="text" id="riddle-input" class="riddle-input" placeholder="اكتب إجابتك هنا...">
+                            <button class="submit-btn" onclick="checkRiddle()">تحقق</button>
+                        </div>
+                        <div id="riddle-feedback" class="feedback-msg"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: QURAN -->
+    <div id="page-quran" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-quran"></i> القرآن الكريم</h2>
+                <div class="quran-container">
+                    <div class="quran-sidebar">
+                        <h3><i class="fas fa-list"></i> سور القرآن الكريم</h3>
+                        <ul class="surah-list" id="surahList"></ul>
+                    </div>
+                    <div class="quran-reader">
+                        <div class="quran-header">
+                            <h2 id="currentSurahName">اختر سورة للقراءة</h2>
+                            <p id="currentSurahInfo"></p>
+                        </div>
+                        <div class="quran-content" id="quranContent">
+                            <p style="color: #999;">اختر سورة من القائمة</p>
+                        </div>
+                        <div class="quran-controls">
+                            <button class="quran-btn quran-btn-primary" onclick="downloadQuran()"><i class="fas fa-download"></i> تحميل PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: GAMES -->
+    <div id="page-games" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-gamepad"></i> الألعاب التعليمية</h2>
+                <div class="games-grid">
+                    <div class="game-card" onclick="startReligiousQuiz()" style="border-color: var(--gold); border-width: 4px;">
+                        <div class="game-icon">📝</div>
+                        <div class="game-title">المسابقة الدينية</div>
+                        <div class="game-desc">اختبر معلوماتك الإسلامية - 10 أسئلة</div>
+                    </div>
+                    <div class="game-card" onclick="openGame('memory')">
+                        <div class="game-icon">🧠</div>
+                        <div class="game-title">لعبة الذاكرة</div>
+                        <div class="game-desc">تذكر الآيات والأحاديث</div>
+                    </div>
+                    <div class="game-card" onclick="openGame('puzzle')">
+                        <div class="game-icon">🧩</div>
+                        <div class="game-title">الألغاز الإسلامية</div>
+                        <div class="game-desc">حل الألغاز الدينية</div>
+                    </div>
+                    <div class="game-card" onclick="openGame('word')">
+                        <div class="game-icon">📖</div>
+                        <div class="game-title">كلمات متقاطعة</div>
+                        <div class="game-desc">كلمات من القرآن والسنة</div>
+                    </div>
+                </div>
+            </section>
+            <section class="section" id="quizSection" style="display:none;">
+                <h2 class="section-title"><i class="fas fa-mosque"></i> المسابقة الدينية</h2>
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>🕌 المسابقة الدينية</h2>
+                        <p>اختبر معلوماتك الإسلامية</p>
+                        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar" style="width: 0%"></div></div>
+                        <p style="margin-top:0.5rem;">السؤال <span id="quizCurrentQ">1</span> من <span id="quizTotalQ">10</span></p>
+                    </div>
+                    <div class="quiz-body">
+                        <div id="quizContent">
+                            <div class="quiz-question" id="quizQuestion">جاري تحميل السؤال...</div>
+                            <div class="quiz-options" id="quizOptions"></div>
+                            <div class="quiz-footer">
+                                <div class="quiz-score">النقاط: <span id="quizScore">0</span></div>
+                                <button class="quiz-btn quiz-btn-next" id="quizNextBtn" onclick="nextQuestion()" style="display:none;">السؤال التالي ➡️</button>
+                            </div>
+                        </div>
+                        <div id="quizResult" style="display:none;">
+                            <div class="quiz-result">
+                                <div class="quiz-result-icon" id="quizResultIcon">🏆</div>
+                                <div class="quiz-result-score" id="quizResultScore"></div>
+                                <div class="quiz-result-msg" id="quizResultMsg"></div>
+                                <button class="quiz-btn quiz-btn-restart" onclick="startReligiousQuiz()">🔄 إعادة المسابقة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE: ISLAMIC -->
+    <div id="page-islamic" class="page-section">
+        <div class="main-container">
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-book-quran"></i> القسم الإسلامي</h2>
+                <div class="islamic-grid">
+                    <div class="islamic-card">
+                        <div class="islamic-card-header"><div class="islamic-icon"><i class="fas fa-quote-right"></i></div><h3>حديث اليوم</h3></div>
+                        <div class="islamic-content"><div class="hadith-text" id="dailyHadith">جاري التحميل...</div><div class="hadith-source" id="hadithSource"></div></div>
+                    </div>
+                    <div class="islamic-card">
+                        <div class="islamic-card-header"><div class="islamic-icon"><i class="fas fa-hands-praying"></i></div><h3>دعاء اليوم</h3></div>
+                        <div class="islamic-content" id="dailyDua">جاري التحميل...</div>
+                    </div>
+                    <div class="islamic-card">
+                        <div class="islamic-card-header"><div class="islamic-icon"><i class="fas fa-star"></i></div><h3>اسم من أسماء الله</h3></div>
+                        <div class="islamic-content" id="dailyName">جاري التحميل...</div>
+                    </div>
+                    <div class="islamic-card">
+                        <div class="islamic-card-header"><div class="islamic-icon"><i class="fas fa-quran"></i></div><h3>آية اليوم</h3></div>
+                        <div class="islamic-content" id="dailyVerse">جاري التحميل...</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="footer-credit"><i class="fas fa-code"></i> إبداع الطالب يوسف عز</div>
+                <div class="footer-copy">جميع الحقوق محفوظة © 2025-2026</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHAT WIDGET (AI) -->
+    <button id="chatToggle" class="chat-toggle" onclick="toggleChat()"><i class="fas fa-robot"></i></button>
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <div><div style="font-weight:700;">🤖 المساعد الذكي</div><div style="font-size:0.85rem;opacity:0.9;">متصل الآن</div></div>
+            <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">أهلاً بك! 👋 أنا مساعدك الذكي للفصل 1/8.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter')sendMessage()">
+            <button class="chat-send" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- CELEBRATION -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <canvas id="confettiCanvas"></canvas>
+        <div class="celebration-content">
+            <div class="celebration-title">🎉 مبروك يا يوسف عز! 🎉</div>
+            <p style="font-size:1.3rem;margin:1rem 0;">أنت مبدع الموقع! 🌟</p>
+            <button class="celebration-btn" onclick="closeCelebration()">شكراً! 🚀</button>
+        </div>
+    </div>
+
+    <script>
+        // DATA
+        const boysData = ["مؤمن محمد عبد الكريم خلفي ابراهيم","نبيل محمد نبيل عبد الموجود عبد المطلب","هادي ناجح بسيوني محمود بسيوني","ياسين احمد بشير علي ابراهيم","ياسين ايمن شعبان محمد ربيع","يوسف احمد قرني عبد النبي سيد","يوسف رمضان شعبان كامل عكاشة","يوسف سيد سمير حسن ابراهيم","يوسف سيد قدرى سيد مراد","يوسف عاطف سليمان حسن محمد","يوسف عز الدين فضل جمعة خليل","يوسف محمد قرني عربي يوسف","يوسف محمود محمد محمود محمد"];
+        const girlsData = ["نرمين عبد الغفار عبد الكريم فيهم سليمان","نهلة محمود صلاح محمود محمد","نور تويه انيب منصور محمد","نور خالد جابر شعيب داود","نورا سعيد محمد سالم محمد","نورا مسعود محمد المنشاوي سلطان","نوران اسامة رضا عبد الحميد","نوران صادق ابراهيم صادق","نورهان زينهم رجب محمد محمد","نورهان محمد محمد عطيه خلاف","نورهان محمود سيد عقيل محمد","نورهان هاني اسماعيل ابراهيم","نيجار محمد رمضان محمد المنير","هاجر رجب قرني عبد عبد النبي","هاجر عامر عبد الرحمن امين حسن","هاجر ممدوح محمد راشد عثمان","هائم حسام فوزي حامد","هدى سمير سعد حامد","هدير سمير عبد القادر محمود عبد اللطيف","هنا سامي رمضان محمد مصطفى","هنا عمرى مسعد سعيد","هنا مصطفى محمد شعراوى","هند شوقي يونس حسن","وفاء ابراهيم رجب محمد اسماعيل","ولاء سعيد احمد محمد","يارا عادل زكريا محمد عبد الباقي","ياسمين رضى خيرى احمد عبد الجليل","ياسمين صبرى عويس امام عباس","يوانا عزيز اسحاق توفيق زكى","يوستينا ايمن نجيب فرج الله ابوسعد","هادية محمد علي سليمان محمد","هنا سويلم رجب حسان"];
+        const wisdomData = [{text:"من تعلم علمًا مما يبتغى به وجه الله لا يتعلمه إلا ليصيب به عرضًا من الدنيا لم يجد عرف الجنة يوم القيامة",source:"حديث شريف"},{text:"إنما الأعمال بالنيات وإنما لكل امرئ ما نوى",source:"حديث شريف"},{text:"اطلبوا العلم من المهد إلى اللحد",source:"حديث شريف"}];
+        const hadithData = [{text:"من سلك طريقًا يلتمس فيه علمًا سهل الله له به طريقًا إلى الجنة",source:"رواه مسلم"},{text:"إنما الأعمال بالنيات وإنما لكل امرئ ما نوى",source:"متفق عليه"}];
+        const duaData = ["رب زدني علمًا","اللهم انفعني بما علمتني وعلمني ما ينفعني","اللهم إني أسألك علمًا نافعًا ورزقًا طيبًا"];
+        const namesOfAllah = [{name:"الرحمن",meaning:"ذو الرحمة الواسعة"},{name:"العليم",meaning:"العالم بكل شيء"}];
+        const surahNames = ["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الإنفطار","المطففين","الإنشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+
+        const dailyQuestions = [
+            { q: "كم عدد سور القرآن الكريم؟", options: ["110 سورة", "114 سورة", "120 سورة", "112 سورة"], correct: 1 },
+            { q: "ما هو أول شهر في السنة الهجرية؟", options: ["رمضان", "شوال", "محرم", "صفر"], correct: 2 },
+            { q: "من هو خاتم الأنبياء والمرسلين؟", options: ["عيسى عليه السلام", "موسى عليه السلام", "محمد ﷺ", "إبراهيم عليه السلام"], correct: 2 },
+            { q: "كم عدد أركان الإسلام؟", options: ["4 أركان", "5 أركان", "6 أركان", "3 أركان"], correct: 1 },
+            { q: "ما هي أطول سورة في القرآن الكريم؟", options: ["آل عمران", "النساء", "البقرة", "المائدة"], correct: 2 },
+            { q: "في أي سنة هجرية كانت غزوة بدر؟", options: ["1 هـ", "2 هـ", "3 هـ", "4 هـ"], correct: 1 },
+            { q: "من هو الصحابي الملقب بالفاروق؟", options: ["أبو بكر الصديق", "علي بن أبي طالب", "عمر بن الخطاب", "عثمان بن عفان"], correct: 2 }
+        ];
+        const dailyRiddles = [
+            { r: "له أسنان ولا يعض، ما هو؟", a: ["مشط", "المنشار"] },
+            { r: "شيء يمشي بلا أرجل ويبكي بلا عيون؟", a: ["سحاب", "سحابة", "غيمة", "غيم"] },
+            { r: "أنا ابن الماء، وإذا وضعوني في الماء أموت، فمن أنا؟", a: ["ثلج", "الجليد", "ملح"] },
+            { r: "ما هو الشيء الذي كلما زاد نقص؟", a: ["العمر", "الحفرة", "المال"] },
+            { r: "شيء تراه في الليل ثلاث مرات وفي النهار مرة واحدة؟", a: ["اللام", "حرف اللام"] },
+            { r: "ما هو الشيء الذي إذا لمسته صاح؟", a: ["جرس", "الجرس", "المنبه"] }
+        ];
+        const religiousQuizQuestions = [
+            { q: "كم عدد أركان الإسلام؟", options: ["3 أركان", "4 أركان", "5 أركان", "6 أركان"], correct: 2 },
+            { q: "من هو أول خليفة في الإسلام؟", options: ["عمر بن الخطاب", "أبو بكر الصديق", "علي بن أبي طالب", "عثمان بن عفان"], correct: 1 },
+            { q: "كم عدد أركان الإيمان؟", options: ["5 أركان", "6 أركان", "7 أركان", "4 أركان"], correct: 1 },
+            { q: "ما هي أطول آية في القرآن الكريم؟", options: ["آية الكرسي", "آية الدين", "آية النور", "آية التوحيد"], correct: 1 },
+            { q: "في أي شهر هجري نزل القرآن الكريم؟", options: ["شعبان", "محرم", "رمضان", "ذو الحجة"], correct: 2 },
+            { q: "من هو النبي الملقب بـ 'أبو الأنبياء'؟", options: ["نوح عليه السلام", "إبراهيم عليه السلام", "آدم عليه السلام", "موسى عليه السلام"], correct: 1 },
+            { q: "كم عدد الأنبياء المذكورين في القرآن الكريم؟", options: ["20 نبي", "25 نبي", "30 نبي", "15 نبي"], correct: 1 },
+            { q: "ما هي السورة التي تعدل ثلث القرآن؟", options: ["الفاتحة", "الإخلاص", "الفلق", "الناس"], correct: 1 },
+            { q: "كم عدد ركعات صلاة الفجر؟", options: ["ركعتان", "3 ركعات", "4 ركعات", "5 ركعات"], correct: 0 },
+            { q: "ما هو أول ما يُحاسب عليه العبد يوم القيامة؟", options: ["الصلاة", "الزكاة", "الصيام", "الحج"], correct: 0 },
+            { q: "من هو النبي الذي ابتلعه الحوت؟", options: ["إدريس عليه السلام", "يونس عليه السلام", "أيوب عليه السلام", "داوود عليه السلام"], correct: 1 },
+            { q: "كم عدد الصلوات المفروضة في اليوم والليلة؟", options: ["3 صلوات", "4 صلوات", "5 صلوات", "6 صلوات"], correct: 2 },
+            { q: "ما هي السورة التي تُقرأ في كل ركعة من الصلاة؟", options: ["الإخلاص", "الفاتحة", "البقرة", "يس"], correct: 1 },
+            { q: "من هو النبي الذي بنى الكعبة؟", options: ["محمد ﷺ", "إبراهيم عليه السلام", "آدم عليه السلام", "نوح عليه السلام"], correct: 1 },
+            { q: "ما هو يوم الحج الأكبر؟", options: ["يوم التروية", "يوم عرفة", "يوم النحر", "يوم القر"], correct: 1 },
+            { q: "كم عدد أبواب الجنة؟", options: ["6 أبواب", "7 أبواب", "8 أبواب", "9 أبواب"], correct: 2 },
+            { q: "ما هي السورة التي لا تبدأ بالبسملة؟", options: ["الفاتحة", "التوبة", "الإخلاص", "الناس"], correct: 1 },
+            { q: "من هو النبي الملقب بـ 'كليم الله'؟", options: ["عيسى عليه السلام", "موسى عليه السلام", "إبراهيم عليه السلام", "آدم عليه السلام"], correct: 1 },
+            { q: "كم عدد سور القرآن الكريم المكية؟", options: ["82 سورة", "86 سورة", "90 سورة", "78 سورة"], correct: 1 },
+            { q: "ما هو أول مسجد بُني في الإسلام؟", options: ["المسجد النبوي", "المسجد الحرام", "مسجد قباء", "المسجد الأقصى"], correct: 2 }
+        ];
+
+        let tasbihCount = 0;
+        let tasbihTotal = 0;
+        let currentChatUserBoys = '';
+        let currentChatUserGirls = '';
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let quizQuestions = [];
+        let quizAnswered = false;
+
+        // PAGE NAVIGATION
+        function showPage(name) {
+            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + name).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.toggle('active', l.getAttribute('data-page') === name);
+            });
+            window.scrollTo(0, 0);
+            if (name === 'students') loadStudents();
+            if (name === 'quran') loadSurahList();
+            if (name === 'islamic') { loadDailyHadith(); loadDailyDua(); loadDailyName(); loadDailyVerse(); }
+            if (name === 'challenge') loadChallenge();
+        }
+
+        // INIT
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1500);
+            loadWisdom();
+            getPrayerTimes();
+        });
+
+        // WISDOM
+        function loadWisdom() {
+            const w = wisdomData[new Date().getDate() % wisdomData.length];
+            document.getElementById('wisdomText').textContent = w.text;
+            document.getElementById('wisdomSource').textContent = w.source;
+        }
+
+        // PRAYER TIMES
+        async function getPrayerTimes() {
+            try {
+                const d = new Date();
+                const res = await fetch(`https://api.aladhan.com/v1/timingsByCity/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?city=Cairo&country=Egypt&method=5`);
+                const data = await res.json();
+                if (data.code === 200) {
+                    const t = data.data.timings;
+                    document.getElementById('fajrTime').textContent = t.Fajr;
+                    document.getElementById('sunriseTime').textContent = t.Sunrise;
+                    document.getElementById('dhuhrTime').textContent = t.Dhuhr;
+                    document.getElementById('asrTime').textContent = t.Asr;
+                    document.getElementById('maghribTime').textContent = t.Maghrib;
+                    document.getElementById('ishaTime').textContent = t.Isha;
+                }
+            } catch(e) {
+                document.getElementById('fajrTime').textContent = '04:30';
+                document.getElementById('dhuhrTime').textContent = '12:00';
+                document.getElementById('asrTime').textContent = '15:15';
+                document.getElementById('maghribTime').textContent = '18:00';
+                document.getElementById('ishaTime').textContent = '19:30';
+            }
+        }
+
+        // ===== NEW TASBIH FUNCTIONS =====
+        function getTasbihTarget() {
+            const type = document.getElementById('tasbihType').value;
+            const targets = {
+                'subhanallah': 33, 'alhamdulillah': 33, 'allahuakbar': 33,
+                'lailaha': 100, 'astaghfirullah': 100, 'salawat': 100
+            };
+            return targets[type] || 33;
+        }
+
+        function updateTasbihProgress() {
+            const target = getTasbihTarget();
+            const progress = Math.min(tasbihCount / target, 1);
+            const circumference = 2 * Math.PI * 110; // ~691
+            const offset = circumference - (progress * circumference);
+            document.getElementById('tasbihProgressFill').style.strokeDashoffset = offset;
+        }
+
+        function incrementTasbih() {
+            tasbihCount++;
+            tasbihTotal++;
+            document.getElementById('tasbihCount').textContent = tasbihCount;
+            document.getElementById('tasbihTotal').textContent = tasbihTotal;
+            updateTasbihProgress();
+            
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            const target = getTasbihTarget();
+            if (tasbihCount === target) {
+                showNotification(`🎉 مبروك! أتممت ${target} تسبيحة`);
+                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            }
+        }
+
+        function resetTasbih() {
+            if (confirm('هل تريد تصفير العداد؟')) {
+                tasbihCount = 0;
+                document.getElementById('tasbihCount').textContent = '0';
+                updateTasbihProgress();
+                showNotification('تم تصفير العداد 🔄');
+            }
+        }
+
+        function changeTasbihType() {
+            const target = getTasbihTarget();
+            document.getElementById('tasbihTargetDisplay').textContent = `الهدف: ${target} مرة`;
+            tasbihCount = 0;
+            document.getElementById('tasbihCount').textContent = '0';
+            updateTasbihProgress();
+            showNotification('تم تغيير الذكر 📿');
+        }
+
+        // STUDENTS
+        function loadStudents() {
+            const bl = document.getElementById('boysList');
+            const gl = document.getElementById('girlsList');
+            if (!bl || !gl) return;
+            bl.innerHTML = ''; gl.innerHTML = '';
+            boysData.forEach((s,i) => { bl.innerHTML += `<li class="student-item"><span class="student-number">${i+1}</span><span class="student-name">${s}</span></li>`; });
+            girlsData.forEach((s,i) => { gl.innerHTML += `<li class="student-item"><span class="student-number">${i+1}</span><span class="student-name">${s}</span></li>`; });
+        }
+
+        // SEARCH
+        function searchStudent(query) {
+            const rd = document.getElementById('searchResults');
+            if (!query.trim()) { rd.classList.remove('active'); rd.innerHTML = ''; return; }
+            const q = query.toLowerCase();
+            let matches = [];
+            boysData.forEach((n,i) => { if(n.toLowerCase().includes(q)) matches.push({name:n,type:'بنين',num:i+1}); });
+            girlsData.forEach((n,i) => { if(n.toLowerCase().includes(q)) matches.push({name:n,type:'بنات',num:i+1}); });
+            rd.innerHTML = matches.length === 0 ? '<div style="padding:1.5rem;text-align:center;color:#666;">لا نتائج</div>' :
+                matches.map(m => `<div class="search-result-item" onclick="goToStudent('${m.type}',${m.num})"><span>${m.name}</span><span class="result-type">${m.type} ${m.num}</span></div>`).join('');
+            rd.classList.add('active');
+            if (query.replace(/\s/g,'').toLowerCase().includes('يوسفعز')) triggerCelebration();
+        }
+        function goToStudent(type, num) {
+            document.getElementById('searchResults').classList.remove('active');
+            showPage('students');
+            setTimeout(() => {
+                const id = type === 'بنين' ? 'boysList' : 'girlsList';
+                const items = document.getElementById(id).children;
+                if (items[num-1]) {
+                    items[num-1].style.background = 'linear-gradient(135deg, #ffd700, #ff8f00)';
+                    items[num-1].scrollIntoView({behavior:'smooth',block:'center'});
+                    setTimeout(() => items[num-1].style.background = '', 2000);
+                }
+            }, 500);
+        }
+
+        // CHAT FUNCTIONS
+        function updateChatUser(type) {
+            if (type === 'boys') {
+                currentChatUserBoys = document.getElementById('chatUsernameSelectBoys').value;
+            } else {
+                currentChatUserGirls = document.getElementById('chatUsernameSelectGirls').value;
+            }
+        }
+
+        function getTimestamp() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        }
+
+        function sendBoysMessage() {
+            if (!currentChatUserBoys) { alert('الرجاء اختيار اسمك أولاً!'); return; }
+            const input = document.getElementById('boysChatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const container = document.getElementById('boysChatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'room-message sent';
+            msgDiv.innerHTML = `<div class="msg-name">${currentChatUserBoys}</div><div class="msg-text">${msg}</div><div class="msg-time">${getTimestamp()}</div>`;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            input.value = '';
+            setTimeout(() => {
+                const replies = ["أحسنت! 👍", "الله يبارك فيك", "تمام 💙", "صح عليك", "ممتاز!"];
+                const replyDiv = document.createElement('div');
+                replyDiv.className = 'room-message received';
+                const randomStudent = boysData[Math.floor(Math.random() * boysData.length)].split(' ')[0];
+                replyDiv.innerHTML = `<div class="msg-name">${randomStudent}</div><div class="msg-text">${replies[Math.floor(Math.random() * replies.length)]}</div><div class="msg-time">${getTimestamp()}</div>`;
+                container.appendChild(replyDiv);
+                container.scrollTop = container.scrollHeight;
+            }, 1000 + Math.random() * 2000);
+        }
+
+        function sendGirlsMessage() {
+            if (!currentChatUserGirls) { alert('الرجاء اختيار اسمك أولاً!'); return; }
+            const input = document.getElementById('girlsChatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const container = document.getElementById('girlsChatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'room-message sent';
+            msgDiv.innerHTML = `<div class="msg-name">${currentChatUserGirls}</div><div class="msg-text">${msg}</div><div class="msg-time">${getTimestamp()}</div>`;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            input.value = '';
+            setTimeout(() => {
+                const replies = ["أحسنت! 👍", "الله يبارك فيك", "تمام 💗", "صح عليك", "ممتاز!"];
+                const replyDiv = document.createElement('div');
+                replyDiv.className = 'room-message received';
+                const randomStudent = girlsData[Math.floor(Math.random() * girlsData.length)].split(' ')[0];
+                replyDiv.innerHTML = `<div class="msg-name">${randomStudent}</div><div class="msg-text">${replies[Math.floor(Math.random() * replies.length)]}</div><div class="msg-time">${getTimestamp()}</div>`;
+                container.appendChild(replyDiv);
+                container.scrollTop = container.scrollHeight;
+            }, 1000 + Math.random() * 2000);
+        }
+
+        // CELEBRATION
+        function triggerCelebration() {
+            document.getElementById('celebrationOverlay').classList.add('active');
+            startConfetti();
+        }
+        function closeCelebration() {
+            document.getElementById('celebrationOverlay').classList.remove('active');
+            stopConfetti();
+        }
+        let confettiAnim;
+        function startConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const pieces = [];
+            const colors = ['#ffd700','#ff6f00','#1a237e','#00c853','#f44336','#2196f3'];
+            for (let i = 0; i < 300; i++) {
+                pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,w:Math.random()*10+5,h:Math.random()*10+5,color:colors[Math.floor(Math.random()*colors.length)],speed:Math.random()*3+2,angle:Math.random()*360,spin:Math.random()*0.2-0.1});
+            }
+            function draw() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                pieces.forEach(p => {
+                    p.y += p.speed; p.angle += p.spin;
+                    if(p.y > canvas.height) p.y = -20;
+                    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle);
+                    ctx.fillStyle = p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+                });
+                confettiAnim = requestAnimationFrame(draw);
+            }
+            draw();
+        }
+        function stopConfetti() { if(confettiAnim) cancelAnimationFrame(confettiAnim); }
+
+        // CHALLENGE
+        function loadChallenge() {
+            const dayIndex = new Date().getDate() % dailyQuestions.length;
+            const riddleIndex = new Date().getDate() % dailyRiddles.length;
+            const qData = dailyQuestions[dayIndex];
+            document.getElementById('question-text').textContent = qData.q;
+            const optionsContainer = document.getElementById('question-options');
+            optionsContainer.innerHTML = '';
+            document.getElementById('question-feedback').textContent = '';
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(idx, qData.correct, btn);
+                optionsContainer.appendChild(btn);
+            });
+            const rData = dailyRiddles[riddleIndex];
+            document.getElementById('riddle-text').textContent = rData.r;
+            document.getElementById('riddle-input').value = '';
+            document.getElementById('riddle-feedback').textContent = '';
+        }
+        function checkAnswer(selectedIdx, correctIdx, btnElement) {
+            const feedback = document.getElementById('question-feedback');
+            const allBtns = document.querySelectorAll('.option-btn');
+            allBtns.forEach(b => b.disabled = true);
+            if (selectedIdx === correctIdx) {
+                btnElement.classList.add('correct');
+                feedback.textContent = '✅ إجابة صحيحة! أحسنت';
+                feedback.className = 'feedback-msg feedback-correct';
+            } else {
+                btnElement.classList.add('wrong');
+                allBtns[correctIdx].classList.add('correct');
+                feedback.textContent = '❌ إجابة خاطئة!';
+                feedback.className = 'feedback-msg feedback-wrong';
+            }
+        }
+        function checkRiddle() {
+            const riddleIndex = new Date().getDate() % dailyRiddles.length;
+            const rData = dailyRiddles[riddleIndex];
+            const userAnswer = document.getElementById('riddle-input').value.trim().toLowerCase();
+            const feedback = document.getElementById('riddle-feedback');
+            if (userAnswer === '') { feedback.textContent = '⚠️ يرجى كتابة إجابة أولاً'; feedback.className = 'feedback-msg feedback-wrong'; return; }
+            const isCorrect = rData.a.some(ans => userAnswer.includes(ans) || ans.includes(userAnswer));
+            if (isCorrect) { feedback.textContent = '🎉 إجابة صحيحة! عبقري'; feedback.className = 'feedback-msg feedback-correct'; }
+            else { feedback.textContent = '❌ إجابة خاطئة!'; feedback.className = 'feedback-msg feedback-wrong'; }
+        }
+
+        // RELIGIOUS QUIZ
+        function startReligiousQuiz() {
+            document.getElementById('quizSection').style.display = 'block';
+            document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('quizResult').style.display = 'none';
+            quizQuestions = [...religiousQuizQuestions].sort(() => Math.random() - 0.5).slice(0, 10);
+            currentQuizQuestion = 0; quizScore = 0; quizAnswered = false;
+            document.getElementById('quizTotalQ').textContent = quizQuestions.length;
+            document.getElementById('quizScore').textContent = '0';
+            loadQuizQuestion();
+            document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        function loadQuizQuestion() {
+            if (currentQuizQuestion >= quizQuestions.length) { showQuizResult(); return; }
+            const q = quizQuestions[currentQuizQuestion];
+            document.getElementById('quizCurrentQ').textContent = currentQuizQuestion + 1;
+            document.getElementById('quizQuestion').textContent = q.q;
+            document.getElementById('quizProgressBar').style.width = ((currentQuizQuestion / quizQuestions.length) * 100) + '%';
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            document.getElementById('quizNextBtn').style.display = 'none';
+            quizAnswered = false;
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                btn.onclick = () => selectQuizAnswer(idx, q.correct, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+        function selectQuizAnswer(selectedIdx, correctIdx, btnElement) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+            const allBtns = document.querySelectorAll('.quiz-option');
+            allBtns.forEach(b => b.style.pointerEvents = 'none');
+            if (selectedIdx === correctIdx) {
+                btnElement.classList.add('correct');
+                quizScore += 10;
+                document.getElementById('quizScore').textContent = quizScore;
+            } else {
+                btnElement.classList.add('wrong');
+                allBtns[correctIdx].classList.add('correct');
+            }
+            document.getElementById('quizNextBtn').style.display = 'inline-block';
+        }
+        function nextQuestion() { currentQuizQuestion++; loadQuizQuestion(); }
+        function showQuizResult() {
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('quizProgressBar').style.width = '100%';
+            const total = quizQuestions.length * 10;
+            const percentage = Math.round((quizScore / total) * 100);
+            document.getElementById('quizResultScore').textContent = `${quizScore} / ${total}`;
+            let icon, msg;
+            if (percentage >= 90) { icon = '🏆'; msg = 'ممتاز! أنت عالم إسلامي! 🌟'; }
+            else if (percentage >= 70) { icon = '🥇'; msg = 'أحسنت! معلوماتك ممتازة! 👏'; }
+            else if (percentage >= 50) { icon = '🥈'; msg = 'جيد! واصل التعلم! 💪'; }
+            else { icon = '📚'; msg = 'لا بأس! حاول مرة أخرى بعد المراجعة!'; }
+            document.getElementById('quizResultIcon').textContent = icon;
+            document.getElementById('quizResultMsg').textContent = msg;
+        }
+
+        // QURAN
+        function loadSurahList() {
+            const list = document.getElementById('surahList');
+            if (!list || list.children.length > 0) return;
+            surahNames.forEach((s,i) => {
+                const li = document.createElement('li');
+                li.className = 'surah-item';
+                li.innerHTML = `<span>${s}</span><span class="surah-number">${i+1}</span>`;
+                li.onclick = () => loadSurah(i+1);
+                list.appendChild(li);
+            });
+        }
+        async function loadSurah(num) {
+            try {
+                const res = await fetch(`https://api.alquran.cloud/v1/surah/${num}`);
+                const data = await res.json();
+                if (data.code === 200) {
+                    const s = data.data;
+                    document.getElementById('currentSurahName').textContent = `سورة ${s.name}`;
+                    document.getElementById('currentSurahInfo').textContent = `${s.numberOfAyahs} آية`;
+                    document.getElementById('quranContent').innerHTML = s.ayahs.map(a => `<p>${a.text} ﴿${a.numberInSurah}﴾</p>`).join('');
+                    document.querySelectorAll('.surah-item').forEach((el,idx) => el.classList.toggle('active', idx+1===num));
+                }
+            } catch(e) { document.getElementById('quranContent').innerHTML = '<p style="color:red">خطأ في التحميل</p>'; }
+        }
+        function downloadQuran() { window.open('https://alquran.cloud/pdf','_blank'); }
+
+        // ISLAMIC
+        function loadDailyHadith() {
+            const h = hadithData[new Date().getDate() % hadithData.length];
+            document.getElementById('dailyHadith').textContent = h.text;
+            document.getElementById('hadithSource').textContent = h.source;
+        }
+        function loadDailyDua() { document.getElementById('dailyDua').textContent = duaData[new Date().getDate() % duaData.length]; }
+        function loadDailyName() {
+            const n = namesOfAllah[new Date().getDate() % namesOfAllah.length];
+            document.getElementById('dailyName').innerHTML = `<h3 style="color:var(--primary);font-size:1.8rem">${n.name}</h3><p>${n.meaning}</p>`;
+        }
+        function loadDailyVerse() {
+            const v = ["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ","وَقُل رَّبِّ زِدْنِي عِلْمًا"][new Date().getDate() % 3];
+            document.getElementById('dailyVerse').innerHTML = `<p style="font-family:'Amiri';font-size:1.6rem">${v}</p>`;
+        }
+
+        // GAMES
+        function openGame(type) {
+            if (type === 'quiz') { startReligiousQuiz(); return; }
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:2000;display:flex;justify-content:center;align-items:center;';
+            modal.innerHTML = `<div style="background:white;border-radius:20px;padding:2rem;max-width:500px;width:90%;text-align:center;">
+                <button onclick="this.parentElement.parentElement.remove()" style="background:#f44336;color:white;border:none;width:40px;height:40px;border-radius:50%;font-size:1.5rem;cursor:pointer;">✕</button>
+                <h2 style="color:var(--primary);margin:1rem 0;">قريباً...</h2>
+                <button onclick="this.parentElement.parentElement.remove()" style="padding:0.8rem 2rem;background:var(--primary);color:white;border:none;border-radius:50px;cursor:pointer;">إغلاق</button>
+            </div>`;
+            document.body.appendChild(modal);
+        }
+
+        // CHAT WIDGET
+        function toggleChat() { document.getElementById('chatWindow').classList.toggle('active'); }
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const div = document.createElement('div');
+            div.className = 'chat-message user';
+            div.textContent = msg;
+            document.getElementById('chatMessages').appendChild(div);
+            input.value = '';
+            setTimeout(() => {
+                const bot = document.createElement('div');
+                bot.className = 'chat-message bot';
+                const m = msg.toLowerCase();
+                if(m.includes('يوسف')) bot.textContent = '👑 يوسف عز مبدع الموقع والرائد! 🌟';
+                else if(m.includes('هنا')) bot.textContent = '👑 هنا مصطفي الرائدة! 🌟';
+                else if(m.includes('جدول')) bot.textContent = '📅 الأحد: فلسفة، تاريخ، رياضة، فرنسي\nالإثنين: نشاط، علوم، إنجليزي، عربي\nالثلاثاء: برمجة، ألعاب، تاريخ، فلسفة\nالأربعاء: عربي، رياضة، دين، علوم\nالخميس: إنجليزي، برمجة، عربي، علوم';
+                else if(m.includes('مذاكرة')) bot.textContent = '💡 نصائح:\n1. حدد وقت ثابت\n2. استخدم البومودورو\n3. لخص بأسلوبك\n4. راجع قبل النوم';
+                else if(m.includes('سلام') || m.includes('مرحبا')) bot.textContent = 'وعليكم السلام! 👋 كيف أقدر أساعدك؟';
+                else bot.textContent = '🤖 أنا مساعدك للفصل 1/8. اسألني عن الجدول، المذاكرة، أو أي شيء!';
+                document.getElementById('chatMessages').appendChild(bot);
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }, 500);
+        }
+
+        // NOTIFICATION
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.style.cssText = `position:fixed;top:100px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;padding:1rem 2rem;border-radius:50px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:10000;font-weight:600;animation:fadeIn 0.3s;`;
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            setTimeout(() => { notif.style.opacity = '0'; notif.style.transition = 'opacity 0.3s'; setTimeout(() => notif.remove(), 300); }, 3000);
+        }
+
+        // EVENT LISTENERS
+        document.addEventListener('keydown', e => {
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT') { e.preventDefault(); incrementTasbih(); }
+            if (e.code === 'Escape') { document.getElementById('chatWindow').classList.remove('active'); closeCelebration(); }
+        });
+        window.addEventListener('resize', () => {
+            const c = document.getElementById('confettiCanvas');
+            if(c) { c.width = window.innerWidth; c.height = window.innerHeight; }
+        });
+    </script>
+</body>
+</html>
